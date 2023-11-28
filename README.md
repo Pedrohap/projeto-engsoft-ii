@@ -51,6 +51,10 @@ Como um *usuário*, quero *manter os meus dados pessoais* para *que as minhas in
 
 Como um *organizador*, quero *verificar os participantes do meu torneio* para *gerenciar as partidas entre os envolvidos ou remover um participante banido.*
 
+- Critérios de Aceitação:
+  - Ao verificar um torneio como organizador, deve ser visivel todos os participantes do mesmo, com a possibilidade de redirecionar para a pagina do partipante, ou remover ele do torneio.
+  - As alterações feitas nos dados devem ser refletidas imediatamente na visualização correspondente.
+
 # Instruções de Instalação
 
 TO DO
