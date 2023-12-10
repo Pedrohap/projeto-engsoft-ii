@@ -69,6 +69,16 @@ class Tournament{
         this._participantes.push(participante);
     }
 
+    //Remover Participante
+    removeParticipante(participante) {
+        let indexParticipanete = this._participantes.indexOf(participante)
+        if(indexParticipanete !== -1){
+            this._participantes.splice(indexParticipanete)
+        } else {
+            console.log("Pariticipante não faz parte do torneio")
+        }
+    }
+
     // Getter e Setter para 'endereco'
     get endereco() {
         return this._endereco;
@@ -87,3 +97,4 @@ class Tournament{
         this._jogos = novosJogos;
     }
 }
+module.exports = Tournament;

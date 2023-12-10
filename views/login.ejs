@@ -1,0 +1,15 @@
+<%- include('layouts/header'); -%>
+
+<form method="POST" action="/singIn">
+    <div class="mb-3">
+      <label for="useremail" class="form-label">E-mail do Usuário</label>
+      <input type="email" class="form-control" id="useremail" name="useremail" required>
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Senha</label>
+      <input type="password" class="form-control" id="password" name="password" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Fazer Login</button>
+</form>
+
+<%- include('layouts/footer'); -%>

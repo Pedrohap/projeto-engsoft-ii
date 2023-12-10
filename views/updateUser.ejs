@@ -1,0 +1,36 @@
+<%- include('layouts/header'); -%>
+
+<% if (typeof status !== 'undefined') { 
+    if (status == 1){ %>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        Atualização de Dados Realizada com sucesso!
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+<% } else {%>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        Erro ao Atualizar os dados
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+<% }
+}%>
+
+<form method="post" action="/updateUser">
+    <div class="mb-3">
+      <label for="username" class="form-label">Nome</label>
+      <input type="text" class="form-control" id="username" name="username" value="<%= logedUser._nome %>" required>
+    </div>
+    <div class="mb-3">
+        <label for="nickname" class="form-label">Apelido</label>
+        <input type="text" class="form-control" id="nickname" name="nickname" value="<%= logedUser._apelido %>" required>
+    </div>
+    <div class="mb-3">
+        <label for="useremail" class="form-label">E-mail</label>
+        <input type="email" class="form-control" id="useremail" name="useremail" value="<%= logedUser._email %>" required>
+    </div>
+    <div class="mb-3">
+        <label for="address" class="form-label">Endereço</label>
+        <input type="text" class="form-control" id="address" name="address" value="<%= logedUser._endereco %>" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Atualizar</button>
+</form>
+<%- include('layouts/footer'); -%>

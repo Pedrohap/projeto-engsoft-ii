@@ -1,0 +1,64 @@
+<%- include('layouts/header'); -%>
+<h1>Torneios</h1>
+
+<% if (typeof status !== 'undefined') { 
+    if (status == 1){ %>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        Você foi inscrito no torneio com sucesso!
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <% } else if (status == 2){%>
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            Inscrição removida com sucesso.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <% } else {%>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        Erro ao se Inscrever.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+<% }
+}%>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Nome</th>
+        <th scope="col">Data</th>
+        <th scope="col">Hora</th>
+        <th scope="col">Local</th>
+        <th scope="col">Jogos</th>
+        <% if (logedUser !== null){ %>
+            <th scope="col">Participar</th>
+        <% } %>
+            
+      </tr>
+    </thead>
+    <tbody>
+<% tournaments.forEach(function(tournament){ %>
+    <tr>
+        <td> <%= tournament._nome %> </td>
+        <td> <%= tournament._data %> </td>
+        <td> <%= tournament._hora %> </td>
+        <td> <%= tournament._endereco %> </td>
+        <td> <%= tournament._jogos %> </td>
+        <% if (logedUser !== null) { %>
+            <% var isParicipando = false;
+            
+            tournament._participantes.forEach(function(partipicante){ 
+                if (partipicante === logedUser._id) { 
+                    isParicipando = true;
+                }
+            }); 
+            
+            if (isParicipando){ %>
+                <td> <a  href="/tournaments/<%=tournament._id %>/dropOut" class="btn btn-danger" >Remover Inscrição</button></td>
+            <%} else {%>
+                <td> <a href="/tournaments/<%=tournament._id %>/enroll" class="btn btn-primary">Inscrever-se</button> </td>
+            <%}%>
+        <% } %>
+    </tr>
+<% }); %>
+
+</tbody>
+</table>
+<%- include('layouts/footer'); -%>

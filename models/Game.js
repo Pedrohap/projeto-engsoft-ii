@@ -52,3 +52,5 @@ class Game{
         this._faixa_etaria = novaFaixaEtaria;
     }
 }
+
+module.exports = Game;

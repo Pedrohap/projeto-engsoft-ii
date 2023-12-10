@@ -1,9 +1,75 @@
 var express = require('express');
 var router = express.Router();
+var UserController = require('../controllers/UserController');
+var TournamentController = require('../controllers/TournamentController')
+
+const userController = new UserController(); // Crie uma instância do UserController
+const tournamentController = new TournamentController();
+
+var logedUser = null;
+const appTitle = "IFFC Manager"
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('index', { title: appTitle, logedUser: logedUser });
 });
+
+//Login User routes
+router.get ('/singIn', function(req,res) {
+  res.render('login', {title: appTitle + ': Entrar', logedUser: logedUser});
+});
+
+router.post('/singIn', function(req,res){
+  logedUser = userController.singInUser(req,res)
+  res.redirect('/')
+});
+
+//Update User routes
+router.get ('/updateUser',function(req,res) {
+  if (logedUser!== null){
+    res.render('updateUser',{title: appTitle + ': Atualizar Dados', logedUser: logedUser})
+  } else {
+    error = {status: 400, stack: 404}
+    res.render('error', {message: "É necessário estar logado para essar está pagina", error:error})
+  }
+})
+
+router.post ('/updateUser',function(req,res) {
+  if (logedUser!== null){
+    userController.updateUser(req,res,logedUser._id)
+    res.render('updateUser',{title: appTitle + ': Atualizar Dados', logedUser: logedUser, status: 1})
+  } else {
+    error = {status: 400, stack: 404}
+    res.render('error', {message: "É necessário estar logado para essar está pagina", error:error})
+  }
+})
+
+//Tournament Routes
+
+//Get Tournaments Page
+router.get ('/tournaments',function(req,res) {
+  res.render('tournaments',{title: appTitle + ': Torneios', logedUser: logedUser, tournaments: tournamentController._tournamentsBD})
+})
+
+//Enroll a user into a Tournament
+router.get ('/tournaments/:tournamentId/enroll',function(req,res) {
+  if (logedUser!== null){
+    tournamentController.enrollTournament(req,res,logedUser._id)
+    res.render('tournaments',{title: appTitle + ': Torneios', logedUser: logedUser, tournaments: tournamentController._tournamentsBD, status: 1})
+  } else {
+    error = {status: 400, stack: 404}
+    res.render('error', {message: "É necessário estar logado para relizar está ação", error:error})
+  }
+})
+
+router.get ('/tournaments/:tournamentId/dropOut',function(req,res) {
+  if (logedUser!== null){
+    tournamentController.dropOutTournament(req,res,logedUser._id)
+    res.render('tournaments',{title: appTitle + ': Torneios', logedUser: logedUser, tournaments: tournamentController._tournamentsBD, status: 2})
+  } else {
+    error = {status: 400, stack: 404}
+    res.render('error', {message: "É necessário estar logado para relizar está ação", error:error})
+  }
+})
 
 module.exports = router;
