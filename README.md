@@ -35,7 +35,6 @@ Como um *organizador*, quero *criar um torneio* para *que os usuários possam in
 Como um *usuário*, quero *ingressar em um torneio* para *competir com outros usuários.*
 
 - Critérios de Aceitação:
-  - Ao ingressar em um torneio, o usário não pode ter presença confirmada em outro tornerio que seja na mesma data.
   - Apos ingressar em um torneio, usuário pode remover a sua inscrição caso deseje.
   - As alterações feitas como ingressantes devem ser refletidas imediatamente na visualização dos participantes do torneio.
 
