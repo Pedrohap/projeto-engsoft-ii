@@ -1,0 +1,47 @@
+<%- include('layouts/header'); -%>
+
+<% if (typeof status !== 'undefined') { 
+    if (status == 1){ %>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        Torneio Criado com sucesso!
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+<% } else {%>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        Erro ao Criar torneio os dados
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+<% }
+}%>
+
+<h1> Criar Torneio</h1>
+<form method="post" action="/tournaments/create">
+    <div class="mb-3">
+      <label for="tournamentName" class="form-label">Nome</label>
+      <input type="text" class="form-control" id="tournamentName" name="tournamentName" required>
+    </div>
+    <div class="mb-3">
+        <label for="tournamentDate" class="form-label">Data</label>
+        <input type="date" class="form-control" id="tournamentDate" name="tournamentDate" required>
+    </div>
+    <div class="mb-3">
+        <label for="tournamentTime" class="form-label">Hora</label>
+        <input type="time" class="form-control" id="tournamentTime" name="tournamentTime" required>
+    </div>
+    <div class="mb-3">
+        <label for="tournamentAddress" class="form-label">Endereço</label>
+        <input type="text" class="form-control" id="tournamentAddress" name="tournamentAddress" required>
+    </div>
+    <div class="mb-3">
+        <label for="tournamentGames" class="form-label">Jogos</label>
+        <select id="tournamentGames" name="tournamentGames" class="form-select" required>
+            <% games.forEach(function(game){ %>
+                <option><%= game._nome %></option>
+            <% }); %>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Criar Torneio</button>
+</form>
+
+
+<%- include('layouts/footer'); -%>

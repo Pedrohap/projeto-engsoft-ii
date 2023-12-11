@@ -23,6 +23,12 @@
                 </li>
             <% } %>
 
+            <% if ((logedUser != null) && (logedUser._tipo_de_acesso === "organizador")){ %>
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="/tournaments/create">Criar Torneio</a>
+              </li>
+            <% } %>
+
 
             <li class="nav-item">
                 <a class="nav-link" href="/tournaments">Torneios</a>

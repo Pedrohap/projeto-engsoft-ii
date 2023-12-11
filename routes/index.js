@@ -2,9 +2,11 @@ var express = require('express');
 var router = express.Router();
 var UserController = require('../controllers/UserController');
 var TournamentController = require('../controllers/TournamentController')
+var GameController = require("../controllers/GameController")
 
 const userController = new UserController(); // Crie uma instância do UserController
 const tournamentController = new TournamentController();
+const gameController = new GameController();
 
 var logedUser = null;
 const appTitle = "IFFC Manager"
@@ -51,9 +53,27 @@ router.get ('/tournaments',function(req,res) {
   res.render('tournaments',{title: appTitle + ': Torneios', logedUser: logedUser, tournaments: tournamentController._tournamentsBD})
 })
 
+//Create a Tournament Form
+router.get ('/tournaments/create',function(req,res) {
+  if (logedUser !== null && logedUser._tipo_de_acesso === "organizador"){
+    res.render('createTournament',{title: appTitle + ': Criar Torneio', logedUser: logedUser, tournaments: tournamentController._tournamentsBD, games: gameController._gamesBD})
+  } else {
+    res.render('error', {message: "É necessário estar logado como organizador para relizar está ação", error:error})
+  }
+})
+
+router.post ('/tournaments/create',function(req,res) {
+  if (logedUser !== null && logedUser._tipo_de_acesso === "organizador"){
+    tournamentController.createTournament(req,res,logedUser._id)
+    res.render('createTournament',{title: appTitle + ': Criar Torneio', logedUser: logedUser, tournaments: tournamentController._tournamentsBD, games: gameController._gamesBD, status:1})
+  } else {
+    res.render('error', {message: "É necessário estar logado como organizador para relizar está ação", error:error})
+  }
+})
+
 //Enroll a user into a Tournament
 router.get ('/tournaments/:tournamentId/enroll',function(req,res) {
-  if (logedUser!== null){
+  if (logedUser !== null && logedUser_){
     tournamentController.enrollTournament(req,res,logedUser._id)
     res.render('tournaments',{title: appTitle + ': Torneios', logedUser: logedUser, tournaments: tournamentController._tournamentsBD, status: 1})
   } else {
