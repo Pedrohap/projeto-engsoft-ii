@@ -71,11 +71,11 @@ class Tournament{
 
     //Remover Participante
     removeParticipante(participante) {
-        let indexParticipanete = this._participantes.indexOf(participante)
+        let indexParticipanete = this._participantes.indexOf(parseInt(participante))
         if(indexParticipanete !== -1){
-            this._participantes.splice(indexParticipanete)
+            this._participantes.splice(indexParticipanete,1)
         } else {
-            console.log("Pariticipante não faz parte do torneio")
+            console.log("Pariticipante não faz parte do torneio :" + indexParticipanete)
         }
     }
 

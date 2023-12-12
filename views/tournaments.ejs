@@ -36,7 +36,7 @@
     <tbody>
 <% tournaments.forEach(function(tournament){ %>
     <tr>
-        <td> <%= tournament._nome %> </td>
+        <td> <a href="/tournaments/<%= tournament._id %>/info"><%= tournament._nome %></a> </td>
         <td> <%= tournament._data %> </td>
         <td> <%= tournament._hora %> </td>
         <td> <%= tournament._endereco %> </td>

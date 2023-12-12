@@ -26,6 +26,14 @@ router.post('/singIn', function(req,res){
   res.redirect('/')
 });
 
+//Sing Out User
+router.get('/singOut', function(req,res){
+  if (logedUser!== null){
+    logedUser = null
+    res.redirect('/')
+  }
+})
+
 //Update User routes
 router.get ('/updateUser',function(req,res) {
   if (logedUser!== null){
@@ -53,7 +61,7 @@ router.get ('/tournaments',function(req,res) {
   res.render('tournaments',{title: appTitle + ': Torneios', logedUser: logedUser, tournaments: tournamentController._tournamentsBD})
 })
 
-router.get ('/tournaments/:tournamentId',function(req,res) {
+router.get ('/tournaments/:tournamentId/info',function(req,res) {
   let tournament = tournamentController.getATournament(req,res)
   res.render('tournamentInfo',{title: appTitle + ': Torneios', logedUser: logedUser, tournament: tournament, games: gameController._gamesBD, users: userController._userBD})
 })
@@ -78,7 +86,7 @@ router.post ('/tournaments/create',function(req,res) {
 
 //Enroll a user into a Tournament
 router.get ('/tournaments/:tournamentId/enroll',function(req,res) {
-  if (logedUser !== null && logedUser_){
+  if (logedUser !== null){
     tournamentController.enrollTournament(req,res,logedUser._id)
     res.render('tournaments',{title: appTitle + ': Torneios', logedUser: logedUser, tournaments: tournamentController._tournamentsBD, status: 1})
   } else {
@@ -94,6 +102,19 @@ router.get ('/tournaments/:tournamentId/dropOut',function(req,res) {
   } else {
     error = {status: 400, stack: 404}
     res.render('error', {message: "É necessário estar logado para relizar está ação", error:error})
+  }
+})
+
+router.get ('/tournaments/:tournamentId/:userId/dropOut',function(req,res) {
+  let idTorneio = req.params.tournamentId
+  let userId = parseInt(req.params.userId)
+  let indexTorneio = tournamentController._tournamentsBD.findIndex(tournament => tournament.id === parseInt(idTorneio));
+  if (logedUser!== null && tournamentController._tournamentsBD[indexTorneio]._organizador === logedUser._id){
+    tournamentController.dropOutTournament(req,res,userId)
+    res.redirect('/tournaments/'+ idTorneio +'/info')
+  } else {
+    error = {status: 400, stack: 404}
+    res.render('error', {message: "É necessário estar logado como organizador deste torneio para relizar está ação", error:error})
   }
 })
 

@@ -35,7 +35,6 @@ Como um *organizador*, quero *criar um torneio* para *que os usuários possam in
 Como um *usuário*, quero *ingressar em um torneio* para *competir com outros usuários.*
 
 - Critérios de Aceitação:
-  - Ao ingressar em um torneio, o usário não pode ter presença confirmada em outro tornerio que seja na mesma data.
   - Apos ingressar em um torneio, usuário pode remover a sua inscrição caso deseje.
   - As alterações feitas como ingressantes devem ser refletidas imediatamente na visualização dos participantes do torneio.
 
@@ -49,10 +48,10 @@ Como um *usuário*, quero *manter os meus dados pessoais* para *que as minhas in
 
 ## História de Usuário 4
 
-Como um *organizador*, quero *verificar os participantes do meu torneio* para *gerenciar as partidas entre os envolvidos ou remover um participante banido.*
+Como um *organizador*, quero *verificar os participantes do meu torneio* para *remover um participante.*
 
 - Critérios de Aceitação:
-  - Ao verificar um torneio como organizador, deve ser visivel todos os participantes do mesmo, com a possibilidade de redirecionar para a pagina do partipante, ou remover ele do torneio.
+  - Ao verificar um torneio como organizador, deve ser visivel todos os participantes do mesmo, de remover ele do torneio.
   - As alterações feitas nos dados devem ser refletidas imediatamente na visualização correspondente.
 
 # Instruções de Instalação

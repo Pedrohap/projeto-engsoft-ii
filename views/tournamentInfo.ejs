@@ -1,18 +1,34 @@
 <%- include('layouts/header'); -%>
 
 <h1> <%= tournament._nome %></h1>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <p><strong>Local: </strong><%= tournament._endereco %></p>
+            <p><strong>Data: </strong><%= tournament._data %></p>
+            <p><strong>Hora: </strong><%= tournament._hora %></p>
+            <p><strong>Jogos: </strong><%= tournament._jogos %></p>
+            
+            <p><strong>Participantes:</strong></p>
+            <ul class="list-group"></ul>
+            <%  tournament._participantes.forEach(function(participante){ %>
+                <li class="list-group-item"><%= users[(participante-1)]._apelido %></li>
+                <% if (logedUser != null && tournament._organizador === logedUser._id)  {%>
+                    <a href="/tournaments/<%= tournament._id %>/<%= participante %>/dropOut" class="btn btn-danger">Remover Participante</a>
+                <% } %>
+            <%}) %>
+            </ul>
+        </div>
+        <div class="col-md-6">
+            <% if (logedUser != null && tournament._organizador === logedUser._id)  {%>
+                <a href="edit" class="btn btn-primary">Editar</a>
+            <% } %>
+        </div>
+    </div>
 
-<p><strong>Local: </strong><%= tournament._endereco %></p>
-<p><strong>Data: </strong><%= tournament._data %></p>
-<p><strong>Hora: </strong><%= tournament._hora %></p>
-<p><strong>Jogos: </strong><%= tournament._jogos %></p>
+</div>
 
-<p><strong>Participantes:</strong></p>
 
-<ul class="list-group"></ul>
-<%  tournament._participantes.forEach(function(partipicante){ %>
-    <li class="list-group-item"><%= users[(partipicante-1)]._apelido %></li>
-<%}) %>
-</ul>
+
 
 <%- include('layouts/footer'); -%>
