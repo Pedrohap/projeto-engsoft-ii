@@ -42,8 +42,10 @@ class UserController{
     
         // Verificando se o usuário foi encontrado
         if (indexUsuario !== -1) {
-            if(this._userBD[indexUsuario].senha === password){
+            if(this._userBD[indexUsuario]._senha === password){
                 return this._userBD[indexUsuario];
+            } else {
+                res.status(404).json({ message: 'Usuário não encontrado' });
             }
         } else {
             res.status(404).json({ message: 'Usuário não encontrado' });
