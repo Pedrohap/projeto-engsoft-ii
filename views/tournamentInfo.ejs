@@ -1,0 +1,18 @@
+<%- include('layouts/header'); -%>
+
+<h1> <%= tournament._nome %></h1>
+
+<p><strong>Local: </strong><%= tournament._endereco %></p>
+<p><strong>Data: </strong><%= tournament._data %></p>
+<p><strong>Hora: </strong><%= tournament._hora %></p>
+<p><strong>Jogos: </strong><%= tournament._jogos %></p>
+
+<p><strong>Participantes:</strong></p>
+
+<ul class="list-group"></ul>
+<%  tournament._participantes.forEach(function(partipicante){ %>
+    <li class="list-group-item"><%= users[(partipicante-1)]._apelido %></li>
+<%}) %>
+</ul>
+
+<%- include('layouts/footer'); -%>

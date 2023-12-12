@@ -53,6 +53,11 @@ router.get ('/tournaments',function(req,res) {
   res.render('tournaments',{title: appTitle + ': Torneios', logedUser: logedUser, tournaments: tournamentController._tournamentsBD})
 })
 
+router.get ('/tournaments/:tournamentId',function(req,res) {
+  let tournament = tournamentController.getATournament(req,res)
+  res.render('tournamentInfo',{title: appTitle + ': Torneios', logedUser: logedUser, tournament: tournament, games: gameController._gamesBD, users: userController._userBD})
+})
+
 //Create a Tournament Form
 router.get ('/tournaments/create',function(req,res) {
   if (logedUser !== null && logedUser._tipo_de_acesso === "organizador"){

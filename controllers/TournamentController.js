@@ -2,9 +2,9 @@ const Tournament = require('../models/Tournament');
 
 class TournamentController{
     constructor(){
-        let tournament1 = new Tournament(1, 'Torneio de Verão', '2023-07-15', '14:00', 1, [1, 2], 'Campo 1', ['Jogo 1', 'Jogo 2']);
-        let tournament2 = new Tournament(2, 'Campeonato de Inverno', '2023-12-01', '18:30', 2, [1, 3], 'Estádio Principal', ['Jogo 3', 'Jogo 4']);
-        let tournament3 = new Tournament(3, 'Copa Primavera', '2024-04-10', '16:00', 3, [2, 3, 4], 'Arena Esportiva', ['Jogo 5', 'Jogo 6']);
+        let tournament1 = new Tournament(1, 'Torneio de Verão', '2023-07-15', '14:00', 1, [1, 2], "Rua do Cão", ['Jogo 1', 'Jogo 2']);
+        let tournament2 = new Tournament(2, 'Campeonato de Inverno', '2023-12-01', '18:30', 2, [1, 3], "Avenida Joaquin", ['Jogo 3', 'Jogo 4']);
+        let tournament3 = new Tournament(3, 'Copa Primavera', '2024-04-10', '16:00', 3, [2, 3, 4], "Downtown", ['Jogo 5', 'Jogo 6']);
 
         this._idCounter = 3;
         // Armazenando os torneios em um array chamado tournamentsBD
@@ -67,6 +67,16 @@ class TournamentController{
         if (indexTorneio !== -1) {
             this._tournamentsBD[indexTorneio].removeParticipante(idParticipante)
             //Manda para a pagina de dados atualizada
+        } else {
+            res.status(404).json({ message: 'Torneio não encontrado' });
+        }
+    }
+
+    getATournament(req,res){
+        let idTorneio = req.params.tournamentId
+        const indexTorneio = this._tournamentsBD.findIndex(tournament => tournament.id === parseInt(idTorneio));
+        if (indexTorneio !== -1) {
+            return this._tournamentsBD[indexTorneio]
         } else {
             res.status(404).json({ message: 'Torneio não encontrado' });
         }
