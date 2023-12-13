@@ -55,18 +55,21 @@ Como um *organizador*, quero *verificar os participantes do meu torneio* para *r
   - As alterações feitas nos dados devem ser refletidas imediatamente na visualização correspondente.
 
 # Instruções de Instalação
-
-TO DO
+- Instalação: `npm install`
+- Execução em ambiente de produção: `npm start`
+- Execução com Nodemon: `nodemon start`
 
 # Comandos para Execução da Aplicação e dos Testes
-
-TO DO
+- Execução dos testes: `npm run`
+- Testes de unidade: `test-unit`
+- Testes de integração: `test-integration`
+- Testes de aceitação: `test-acceptance`
 
 # Tabela com Endpoints da API mockada
 
 | Verb | URL | Description
 | - | - | - |
 | GET | /jogo/**[_id_jogo]** | Retorna as informações do jogo pela [_id_jogo] que foi informado |
-| GET | /cep/**[_cep]** | Retorna os dados do [_cep] informado |
-| GET | /torneio/**[_id_torneio]**  | Retorna os dados do torneio, como hora, local, organizador e os jogos que compõem o torneio |
-| GET | /torneio/participantes/**[_id_torneio]** | Retorna todos os participantes do torenio pelo o [_id_torneio] |
+| GET | /cep/**[_cep]** | Retorna os dados do [_cep] informado (Não implementada) |
+| GET | /torneio/**[_id_torneio]**  | Retorna os dados do torneio, como hora, local, organizador e os jogos que compõem o torneio (Não implementada) |
+| GET | /torneio/participantes/**[_id_torneio]** | Retorna todos os participantes do torenio pelo o [_id_torneio] (Não implementada) |

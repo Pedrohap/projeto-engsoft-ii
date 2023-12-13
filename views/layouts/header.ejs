@@ -19,7 +19,7 @@
             <ul class="navbar-nav">
             <% if (logedUser != null){ %>
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="/updateUser">Editar Cadastro</a>
+                    <a id="updateUserLink" class="nav-link" aria-current="page" href="/updateUser">Editar Cadastro</a>
                 </li>
             <% } %>
 
@@ -57,7 +57,7 @@
                 </div>
             <% } else { %>
                 <div class="ms-auto">
-                  <a href="/singIn">Fazer Login</a>
+                  <a id="singInLink" href="/singIn">Fazer Login</a>
                 </div>
             <% }%>
           </div>
