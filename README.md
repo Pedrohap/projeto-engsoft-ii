@@ -55,17 +55,17 @@ Como um *organizador*, quero *verificar os participantes do meu torneio* para *r
   - As alterações feitas nos dados devem ser refletidas imediatamente na visualização correspondente.
 
 # Instruções de Instalação
-- Instalação: `npm install`
+- Instalação de dependências: `npm install`
 - Execução em ambiente de produção: `npm start`
 - Execução com Nodemon: `nodemon start`
 
 # Comandos para Execução da Aplicação e dos Testes
-- Execução dos testes: `npm run`
-- Testes de unidade: `test-unit`
-- Testes de integração: `test-integration`
-- Testes de aceitação: `test-acceptance`
+- Execução dos testes: `npm test`
+- Testes de unidade: `npm run test-unit`
+- Testes de integração: `npm run test-integration`
+- Testes de aceitação: `npm run test-acceptance`
 
-# Tabela com Endpoints da API mockada
+ # Tabela com Endpoints da API mockada
 
 | Verb | URL | Description
 | - | - | - |

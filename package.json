@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
+    "test": "jest",
     "test-unit": "npx jest __tests__/unit",
     "test-acceptance": "npx jest __tests__/acceptance",
     "test-integration": "npx jest __tests__/integration"

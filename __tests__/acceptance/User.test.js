@@ -16,7 +16,7 @@ describe('Login', ()=>{
             .build();
         
         // Acessa a aplicação
-        await driver.get('http://localhost:3000/');  
+        await driver.get('http://localhost:3000');  
 
         //user1@example.com', 'João Silva'
         await driver.findElement(By.id('singInLink')).click();
@@ -51,5 +51,6 @@ describe('Login', ()=>{
         expect(await novoEmail).toEqual('clebin@supremo.com');
         expect(await novoAddress).toEqual('Rua dos mestres Cleberlandia');
 
-    });
+    }, 10000); // 10000 ms (10 segundos) de timeout
+
 });
