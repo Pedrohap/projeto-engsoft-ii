@@ -12,6 +12,15 @@ class GameController{
         // Armazenando os torneios em um array chamado tournamentsBD
         this._gamesBD = [game1, game2, game3, game4];
     }
+
+    APIgetGame(gameId){
+        let indexGame = this._gamesBD.findIndex(game => game.id === gameId);
+        if (indexGame !== -1) {
+            return this._gamesBD[indexGame]
+        } else {
+            return 'undefined'
+        }
+    }
 }
 
 module.exports = GameController

@@ -2,7 +2,7 @@ const Tournament = require('../models/Tournament');
 
 class TournamentController{
     constructor(){
-        let tournament1 = new Tournament(1, 'Torneio de Verão', '2023-07-15', '14:00', 1, [2, 4], "Rua do Cão", ['Jogo 1', 'Jogo 2']);
+        let tournament1 = new Tournament(1, 'Torneio de Verão', '2023-07-15', '14:00', 1, [2, 4], "Rua do Cão", ['Mortal Kombat 1']);
         let tournament2 = new Tournament(2, 'Campeonato de Inverno', '2023-12-01', '18:30', 2, [1, 3], "Avenida Joaquin", ['Jogo 3', 'Jogo 4']);
         let tournament3 = new Tournament(3, 'Copa Primavera', '2024-04-10', '16:00', 3, [2, 3, 4], "Downtown", ['Jogo 5', 'Jogo 6']);
 
